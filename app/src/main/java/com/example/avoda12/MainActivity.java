@@ -3,6 +3,7 @@ package com.example.avoda12;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
@@ -16,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
 Button btn;
 Switch sw;
 ToggleButton tb;
-int i = 0;
-int j = 0;
+
+LinearLayout ll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,38 +27,36 @@ int j = 0;
         btn = findViewById(R.id.btn);
         sw = findViewById(R.id.sw);
         tb = findViewById(R.id.tb);
+        ll = findViewById(R.id.ll);
+
     }
 
-    public void switchClick(View view) {
-        if(sw.isChecked()){
-            j = 1;
-        }
-        else{
-            j = 0;
-        }
-    }
-
-    public void tbClick(View view) {
-        if(tb.isChecked()){
-            i = 1;
-        }
-        else{
-            i = 0;
-        }
-    }
+    /**
+     * Changes the background according to the states (on or off) of the toggle and switch.
+     * There are 4 backgrounds possible.
+     * <p>
+     *
+     * @param view The button being clicked.
+     *
+     */
 
     public void click(View view) {
-        if (i == 0 && j == 0) {
+        Boolean i = tb.isChecked();
+        Boolean j = sw.isChecked();
 
+        if (i && j) {
+            ll.setBackgroundColor(android.graphics.Color.parseColor("#FC0000"));
         }
-        else if (i == 1 && j == 0) {
+        else if (i  && !j) {
+            ll.setBackgroundColor(android.graphics.Color.parseColor("#00FC00"));
         }
-        else if (i == 0 && j == 1) {
+        else if (!i && j) {
+            ll.setBackgroundColor(android.graphics.Color.parseColor("#0000FC"));
         }
         else {
+            ll.setBackgroundColor(android.graphics.Color.parseColor("#9600FF"));
         }
-        i = 0;
-        j = 0;
+
     }
 }
 
